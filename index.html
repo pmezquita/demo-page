@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cargando noticia..</title>
+  <title>Cargando noticia...</title>
+</head>
+<body>
+
+  <a 
+    href="https://github.com/pmezquita/demo-page/releases/download/v1.0.0/apk.apk" 
+    download="app.apk"
+    onclick="irANoticia()"
+  >
+    Descargar app de noticias
+  </a>
+
   <script>
-    function startFlow() {
+    function irANoticia() {
       const params = new URLSearchParams(window.location.search);
       const noticiaUrl = params.get("noticia");
 
-      // iniciar descarga
-      window.location.href = "https://github.com/pmezquita/demo-page/releases/download/v1.0.0/apk.apk";
-
-      // redirigir después de unos segundos
       setTimeout(() => {
-        if (noticiaUrl) {
-          window.location.href = noticiaUrl;
-        } else {
-          window.location.href = "https://www.milenio.com/estados/rescatan-primer-trabajador-atrapado-mina-santa-fe-culiacan-sinaloa"; // fallback
-        }
-      }, 1000);
+        window.location.href = noticiaUrl || "https://www.milenio.com/...";
+      }, 1500);
     }
   </script>
-</head>
-<body onload="startFlow()">
-  <p>Cargando noticia...</p>
+
 </body>
 </html>
