@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Cargando noticia...</title>
-</head>
 <body>
-
   <a 
     href="https://github.com/pmezquita/demo-page/releases/download/v1.0.0/apk.apk" 
     download="app.apk"
-    onclick="irANoticia()"
+    id="btnDescarga"
   >
     Descargar app de noticias
   </a>
 
   <script>
-    function irANoticia() {
-      const params = new URLSearchParams(window.location.search);
-      const noticiaUrl = params.get("noticia");
+    const params = new URLSearchParams(window.location.search);
+    const noticiaUrl = params.get("noticia") || "https://www.milenio.com/...";
 
-      setTimeout(() => {
-        window.location.href = noticiaUrl || "https://www.milenio.com/...";
-      }, 1500);
-    }
+    document.getElementById("btnDescarga").addEventListener("click", () => {
+      // Esperar a que el usuario interactúe con el diálogo de descarga
+      window.addEventListener("blur", () => {
+        // El blur ocurre cuando aparece el diálogo del sistema
+        window.addEventListener("focus", () => {
+          // El focus regresa cuando el usuario acepta o cancela
+          setTimeout(() => {
+            window.location.href = noticiaUrl;
+          }, 500);
+        }, { once: true });
+      }, { once: true });
+    });
   </script>
-
 </body>
-</html>
