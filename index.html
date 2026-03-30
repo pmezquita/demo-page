@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Descargando app...</title>
+  <script>
+    function startFlow() {
+      const params = new URLSearchParams(window.location.search);
+      const noticiaUrl = params.get("noticia");
+
+      // iniciar descarga
+      window.location.href = "/app.apk";
+
+      // redirigir después de unos segundos
+      setTimeout(() => {
+        if (noticiaUrl) {
+          window.location.href = noticiaUrl;
+        } else {
+          window.location.href = "https://tudominio.com/noticia"; // fallback
+        }
+      }, 4000);
+    }
+  </script>
+</head>
+<body onload="startFlow()">
+  <p>Tu descarga comenzará automáticamente...</p>
+</body>
+</html>
