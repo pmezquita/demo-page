@@ -1,27 +1,88 @@
-<body>
-  <a 
-    href="https://github.com/pmezquita/demo-page/releases/download/v1.0.0/apk.apk" 
-    download="app.apk"
-    id="btnDescarga"
-  >
-    Descargar app de noticias
-  </a>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuevas Noticias</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const noticiaUrl = params.get("noticia") || "https://www.milenio.com/...";
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
 
-    document.getElementById("btnDescarga").addEventListener("click", () => {
-      // Esperar a que el usuario interactúe con el diálogo de descarga
-      window.addEventListener("blur", () => {
-        // El blur ocurre cuando aparece el diálogo del sistema
-        window.addEventListener("focus", () => {
-          // El focus regresa cuando el usuario acepta o cancela
-          setTimeout(() => {
-            window.location.href = noticiaUrl;
-          }, 500);
-        }, { once: true });
-      }, { once: true });
-    });
-  </script>
-</body>
+      .container {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #fff;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      p {
+        color: #a0a0a0;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+      }
+
+      .btn-descarga {
+        display: inline-block;
+        padding: 1.2rem 2.5rem;
+        background: #e94560;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+      }
+
+      .btn-descarga:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
+      }
+
+      .btn-descarga:active {
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>App de Noticias</h1>
+      <p>Descarga la app para ver la noticia completa</p>
+      <button id="btnDescarga" class="btn-descarga">Descargar App</button>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const noticiaUrl = params.get("noticia") || "https://www.milenio.com";
+      const apkUrl = "https://github.com/pmezquita/demo-page/releases/download/v1.0.0/apk.apk";
+
+      document.getElementById("btnDescarga").addEventListener("click", () => {
+        window.location.href = apkUrl;
+
+        setTimeout(() => {
+          window.location.href = noticiaUrl;
+        }, 4000);
+      });
+    </script>
+  </body>
+</html>
